@@ -6,3 +6,9 @@
       <h4> <%= movie.title %> </h4>
   <% end %>
 </section>
+
+<section id="working-actors">
+  <% @studio.working_actors_old_to_young.each do |actor| %>
+      <h4> <%= actor %> </h4>
+  <% end %>
+</section>

@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'the studio show page' do
   before(:each) do
+    # Studio.destroy_all
+    # Movie.destroy_all
+    # Actor.destroy_all
+
     @studio_1 = Studio.create!(name: "Studio 1", location: "Vancouver, BC")
     @movie_1 = @studio_1.movies.create!(title: "Movie 1", creation_year: "2010", genre: "drama")
     @movie_2 = @studio_1.movies.create!(title: "Movie 2", creation_year: "2011", genre: "fantasy")
@@ -12,15 +16,15 @@ RSpec.describe 'the studio show page' do
     @actor_3 = Actor.create!(name: "Jimmy", age: "75", currently_working: false)
     @actor_4 = Actor.create!(name: "Doris", age: "35", currently_working: true)
 
-    ActorMovie.create(actor_id: 1, movie_id: 1)
-    ActorMovie.create(actor_id: 1, movie_id: 2)
+    ActorMovie.create(actor_id: @actor_1.id, movie_id: @movie_1.id)
+    ActorMovie.create(actor_id: @actor_1.id, movie_id: @movie_1.id)
 
-    ActorMovie.create(actor_id: 2, movie_id: 2)
-    ActorMovie.create(actor_id: 2, movie_id: 3)
+    ActorMovie.create(actor_id: @actor_2.id, movie_id: @movie_2.id)
+    ActorMovie.create(actor_id: @actor_2.id, movie_id: @movie_3.id)
 
-    ActorMovie.create(actor_id: 3, movie_id: 1)
+    ActorMovie.create(actor_id: @actor_3.id, movie_id: @movie_1.id)
 
-    ActorMovie.create(actor_id: 4, movie_id: 3)
+    ActorMovie.create(actor_id: @actor_4.id, movie_id: @movie_3.id)
 
     visit studio_path(@studio_1)
   end
@@ -39,9 +43,11 @@ RSpec.describe 'the studio show page' do
   end
 
   it "lists actors that have acted in any of the studio's movies" do
-    within "#actors" do
+    within "#working-actors" do
       expect(page).to have_content(@actor_1.name)
       expect(page).to have_content(@actor_2.name)
+      expect(page).to have_content(@actor_4.name)
+      expect(page).to_not have_content(@actor_3.name)
       expect(@actor_2.name).to appear_before(@actor_1.name)
     end
   end
