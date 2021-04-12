@@ -8,9 +8,8 @@
 <% end %>
 </section>
 <br>
-<%= form_with url: "/studios/#{@studio_1.id}/movies/#{@movie_1.id}", method: :post do |form|%>
-  <h3><%= form.label "Add a ride to workload:" %></h3><br>
-  <p>Ride ID: <%= form.number_field :ride_id %></p>
-  <br>
+<%= form_with url: "/movies/@movie_id/actor_movies", method: :post do |form|%>
+  <h3><%= form.label "Add actor by name:" %></h3><br>
+  <p><%= form.text_field :actor_name %></p>
   <%= form.submit "Submit" %>
 <% end %>
