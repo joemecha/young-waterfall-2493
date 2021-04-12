@@ -11,7 +11,7 @@ RSpec.describe 'the movie show page' do
     @actor_4 = Actor.create!(name: "Doris", age: "35", currently_working: true)
 
     ActorMovie.create(actor_id: @actor_1.id, movie_id: @movie_1.id)
-    ActorMovie.create(actor_id: @actor_1.id, movie_id: @movie_1.id)
+    ActorMovie.create(actor_id: @actor_2.id, movie_id: @movie_1.id)
     ActorMovie.create(actor_id: @actor_3.id, movie_id: @movie_1.id)
 
     visit  "/studios/#{@studio_1.id}/movies/#{@movie_1.id}"
@@ -26,15 +26,6 @@ RSpec.describe 'the movie show page' do
 
   it "displays this movie's actors" do
     within "#actors" do
-      expect(page).to have_content(@actor_1.name)
-      expect(page).to have_content(@actor_2.name)
-      expect(page).to have_content(@actor_4.name)
-      expect(page).to_not have_content(@actor_3.name)
-    end
-  end
-
-  it "lists actors that have acted in any of the studio's movies" do
-    within "#working-actors" do
       expect(page).to have_content(@actor_1.name)
       expect(page).to have_content(@actor_2.name)
       expect(page).to have_content(@actor_3.name)
