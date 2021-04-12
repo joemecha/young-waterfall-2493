@@ -16,7 +16,9 @@ RSpec.describe 'the studio show page' do
 
 
   it "displays studio's movies' titles" do
-    expect(page).to have_content(@movie_1.title)
-    expect(page).to have_content(@movie_2.title)
+    within "#movie-titles" do
+      expect(page).to have_content(@movie_1.title)
+      expect(page).to have_content(@movie_2.title)
+    end 
   end
 end
