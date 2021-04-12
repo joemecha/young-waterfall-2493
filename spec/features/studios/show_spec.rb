@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'the studio show page' do
   before(:each) do
-    # Studio.destroy_all
-    # Movie.destroy_all
-    # Actor.destroy_all
-
     @studio_1 = Studio.create!(name: "Studio 1", location: "Vancouver, BC")
     @movie_1 = @studio_1.movies.create!(title: "Movie 1", creation_year: "2010", genre: "drama")
     @movie_2 = @studio_1.movies.create!(title: "Movie 2", creation_year: "2011", genre: "fantasy")

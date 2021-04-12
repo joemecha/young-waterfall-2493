@@ -14,7 +14,7 @@ RSpec.describe 'the movie show page' do
     ActorMovie.create(actor_id: @actor_1.id, movie_id: @movie_1.id)
     ActorMovie.create(actor_id: @actor_3.id, movie_id: @movie_1.id)
 
-    visit studio_movie_path(@movie_1)
+    visit  "/studios/#{@studio_1.id}/movies/#{@movie_1.id}"
   end
 
   it "shows the movie's title, creation year and genre" do
