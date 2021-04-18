@@ -9,6 +9,6 @@
 
 <section id="working-actors">
   <% @studio.working_actors_old_to_young.each do |actor| %>
-      <h4> <%= actor %> </h4>
+      <h4> <%= actor.name %> - <%= actor.age %></h4> 
   <% end %>
 </section>

@@ -4,6 +4,8 @@ class CreateActors < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :age
       t.boolean :currently_working
+
+      t.timestamps
     end
   end
 end

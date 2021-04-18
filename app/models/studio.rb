@@ -6,7 +6,7 @@ class Studio < ApplicationRecord
     movies.joins(:actors)
           .where("actors.currently_working = true")
           .distinct
-          .pluck(:name)
-          # .order("age desc")
+          .order("age desc")
+          .select(:name, :age)
   end
 end
